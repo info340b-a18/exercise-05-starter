@@ -1,110 +1,117 @@
 'use strict';
 
-/* Get a reference to the drawing context. Do not modify! */
-const canvas = document.getElementById('canvas'); //reference the canvas element
-const brush = canvas.getContext('2d'); //the drawing context
-
-//color the background
-brush.fillStyle = '#000051'; //deep blue
-brush.fillRect(0, 0, canvas.width, canvas.height); //fill the canvas
-
-/* your code goes here! */
-
-
-//Assign the brush a `fillStyle` of '#3d5afe' (the "body color" for the rocket)
-
-
-//Draw the "body" of the rocket: a filled in rectangle with an upper-left corner
-//at (192,143), a width of 116px, and a height of 230px
-
-
-
-//Draw the "engine" of the rocket: a filled-in rectangle (color of '#ffab40') 
-//with a width of 80 and a height of 35. The engine should centered with the 
-//rocket body, but be positioned 2px below the _bottom_ of the rocket body (you
-//will need to do some math to determine the x,y coordinates!)
-
-
-
-//Draw the "nose cone" at the top of the rocket, a filled in triangle colored
-//'#64ffda'. The triangle should have corners at:
-//  (192,141), (250,45), and (308,141)
-//You will need to use `beginPath()` to start the path, `moveTo()` to move the
-//brush to a starting location, and `lineTo()` to draw a line the next corner.
-//Remember to call `fill()` in order to actually draw the path after it's made!
-
-
-
-//Draw TWO "windows" on the rocket. Windows are circles with a fill color of
-//'#ffab40'. They should have an outline (`strokeStyle`) of `'gray'` that has
-//a `lineWidth` of 2 pixels.
-//Each window has a radius of 20px; one is centered at (250, 180) and one at
-//(250,230).
-//  - You will need to begin a new path for EACH window!
-//  - Use the `arc()` method to draw a complete arc (from an angle of 0 to 2 PI)
-//  - don't forget to both `fill()` AND `stroke()` each circle to draw the fill
-//    and the outline!
+/* Below is an array of objects representing Husky Football games from the 2016
+   season. Each object has the same properties, so it represents a data table. */
+let huskyGames2016 = [
+  { "date":"9/3/16", "home":"UW", "opponent":"Rutgers", "home_score":48, 
+    "opponent_score":13, "passing_yards":289, "rushing_yards":91, "fumbles":0 },
+  { "date":"9/10/16", "home":"UW", "opponent":"Idaho", "home_score":59, 
+    "opponent_score":14, "passing_yards":356, "rushing_yards":126, "fumbles":1 },
+  { "date":"9/17/16", "home":"UW", "opponent":"Portland State", "home_score":41, 
+    "opponent_score":3, "passing_yards":194, "rushing_yards":213, "fumbles":1 },
+  { "date":"9/24/16", "home":"Arizona", "opponent":"UW", "home_score":28, 
+    "opponent_score":35, "passing_yards":160, "rushing_yards":352, "fumbles":0 },
+  { "date":"9/30/16", "home":"UW", "opponent":"Stanford", "home_score":44, 
+    "opponent_score":6, "passing_yards":210, "rushing_yards":214, "fumbles":0 },
+  { "date":"10/8/16", "home":"Oregon", "opponent":"UW", "home_score":21, 
+    "opponent_score":70, "passing_yards":304, "rushing_yards":378, "fumbles":0 },
+  { "date":"10/22/16", "home":"UW", "opponent":"Oregon State", "home_score":41, 
+    "opponent_score":17, "passing_yards":300, "rushing_yards":219, "fumbles":2 },
+  { "date":"10/29/16", "home":"Utah", "opponent":"UW", "home_score":24, 
+    "opponent_score":31, "passing_yards":186, "rushing_yards":199, "fumbles":1 },
+  { "date":"11/5/16", "home":"Cal", "opponent":"UW", "home_score":27, "opponent_score":66, 
+    "passing_yards":417, "rushing_yards":287, "fumbles":2 },
+  { "date":"11/12/16", "home":"UW", "opponent":"USC", "home_score":13, "opponent_score":26, 
+    "passing_yards":259, "rushing_yards":17, "fumbles":0 },
+  { "date":"11/19/16", "home":"UW", "opponent":"Arizona State", "home_score":44, 
+    "opponent_score":18, "passing_yards":338, "rushing_yards":201, "fumbles":0 },
+  { "date":"11/25/16", "home":"Washington State", "opponent":"UW", "home_score":17, 
+    "opponent_score":45, "passing_yards":342, "rushing_yards":168, "fumbles":1 },
+  { "date":"12/2/16", "home":"Colorado", "opponent":"UW", "home_score":10, 
+    "opponent_score":41, "passing_yards":118, "rushing_yards":25, "fumbles":0 },
+  { "date":"12/31/16", "home":"UW", "opponent":"Alabama", "home_score":7, 
+    "opponent_score":24, "passing_yards":150, "rushing_yards":44, "fumbles":1 }
+ ];
 
 
-
-//Draw the "fins" on the sides of the rocket. These will be paths filled with 
-//the same color as the nose cone.
-//Instead of straight lines, the fins will be drawn with Bezier Curves
-//(https://en.wikipedia.org/wiki/B%C3%A9zier_curve; scroll down for fun animations),
-//which have a start point, end point, and two "control points".
-//To draw the curves, `moveTo()` the start point, then use `.bezierCurveTo()` to 
-//specify the control points and end point. 
-//Each fin is made of TWO curves that are part of the same path (like two lines,
-//but two curves).
-
-//The first fin is defined by one curve with
-//  - start point: (310,260)
-//  - control point 1: (360,265)
-//  - control point 2: (395,340)
-//  - end point: (335,410)
-//And a second curve with
-//  - start point: end of the first curve (same path!)
-//  - control point 1: (350,370)
-//  - control point 2: (335,355)
-//  - end point: (310,355)
-//Remember to `fill()` the path when you're done!
+//Define a function `extractOpponent()` that takes in a "game" object and returns
+//UW's opponent (whether or not that was the home team!)
+//You can test this by passing in an individual element from the array.
 
 
-
-//The second fin is defined by one curve with:
-//  - start point: (190,260)
-//  - control point 1: (140,265)
-//  - control point 2: (105,340)
-//  - end point: (165,410)
-//And a second curve with
-//  - start point: end of the first curve (same path!)
-//  - control point 1: (150,370)
-//  - control point 2: (165,355)
-//  - end point: (190,355)
-//Remember to `fill()` the path when you're done!
+//Use the `map()` method and your `extractOpponent()` function to create an array
+//of UW's opponents for the season (in the same order as in the `huskyGames2016`).
+//The opponents in the list do not need to be unique.
+//Log out the opponents array.
 
 
+//Define a function `huskiesLost()` that takes in a "game" object and returns
+//whether or not UW lost.
 
-//Finally, make the rocket body look more like a cylinder. You will do this by
-//making the `fillStyle` be a *linear gradient* 
-//(https://www.w3schools.com/graphics/canvas_gradients.asp)
+
+//Use the `filter()` method to create an array of games that UW lost (a smaller
+//array than the games they won!)
+//Log out the array of lost games.
+
+
+//Log out an array of opponents that UW lost to. Hint: Use the `.map()` method 
+//to extract the opponent names!
+
+
+//Use a `forEach()` loop to log out each of the games UW lost, each on its own 
+//line, in the following format:
+//    "Rutgers at UW, 13 to 48"
+//You should use an anonymous callback function.
+
+
+//Use the `filter()` method with an anonymous callback function to get an array
+//of games where UW had at least one fumble.
+//Log out HOW MANY games included fumbles.
+
+
+//Define a function `mostYardsPassing()` that takes in two "game" objects and
+//returns the game that has a greater number of passing yards.
+//Your function should handle the case where the _first_ game has no 
+//`passing_yards` property, in which case it should return the second game.
+
+
+//Create a variable `mostPassingGame` that refers to the "game" that had the most
+//passing yards in the season. Use the `reduce()` method with `mostYardsPassing()`
+//as the callback.
+// - You will need your `reduce()` method to start with an empty object `{}`,
+//   since initially no game has the most passing yards!
+// - Consider: why do this with `reduce()` instead of `filter()`?
 //
-//At the TOP of your code (before you draw the rocket body!), create a variable 
-//for the gradient by calling the brush's `createLinearGradient()` function.
-//  - Your gradient should go from the upper-left to the upper-right corner of
-//    the rocket body
-//Add the following "stops" to the gradient:
-//  - at 0% across, the color should be '#3d5afe' (the body color)
-//  - at 22% across, the color should be '#5a72fe' (a lighter body color)
-//  - at 40% across, the color should be `'white'`
-//  - at 58% across, the color should be the lighter body color again
-//  - at 100 across, the color should be the body color again
-//Assign the gradient as the `fillStyle` before you draw the rocket body to 
-//complete this step
+//Log out the game with the most passing yards.
 
 
-//Make canvas available to tester. DO NOT MODIFY THIS.
-if(typeof module !== 'undefined' && module.exports){
-  /* eslint-disable */
-  module.exports.canvas = canvas;
-}
+
+//It would be useful to be able to apply multiple "filter criteria" to an array
+//of games at once.
+//To support this, define a function `makeCombinedFilter()` that takes two 
+//*callback functions* as arguments. The `makeCombinedFilter()` function should 
+//then define a _new_ function (called e.g., `combinedFilter`) that takes in a 
+//game object and returns the result of passing that object to both of the 
+//callback functions and "anding" (&&) the results. The `makeCombinedFilter()` 
+//function should then return this new function.
+
+
+//Create a variable `fumbledAndLostFilter` which is the result of calling the 
+//`makeCombinedFilter()` function and passing two callback functions: 
+//one for filtering for games UW lost (e.g., the `huskiesLost()` function), and 
+//one for filtering for games with fumbles (this can be a named or an anonymous
+//callback like you used earlier).
+//Note that `fumbledAndLostFilter` _is_ a function!
+
+
+//Create an array of games that UW lost with fumbles. Use the 
+//`fumbledAndLostFilter()` function as a callback to the `filter()` method.
+//Log out the array of games lost with fumbles.
+
+
+
+//OPTIONAL extra practice: create a variable `avgScoreDifference` that
+//represents the average number of points UW scored _over_ their opponent
+//(this value would be negative for games they lost). Use the `reduce()`
+//method with an anonymous callback function.
+

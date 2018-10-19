@@ -1,118 +1,110 @@
 'use strict';
 
-/* Define a function `addFour()` that takes a single argument 
-   and returns a value 4 greater than the input.*/
+/* Get a reference to the drawing context. Do not modify! */
+const canvas = document.getElementById('canvas'); //reference the canvas element
+const brush = canvas.getContext('2d'); //the drawing context
 
-   
-/* Create and log a variable `twelve` that is the result of passing 8 to your
-   addFour() function. */
+//color the background
+brush.fillStyle = '#000051'; //deep blue
+brush.fillRect(0, 0, canvas.width, canvas.height); //fill the canvas
 
-   
-/* Create and log a variable `twelveString` that is the result of passing "8" 
-   (a string) to your addFour() function. Consider what this tells you about how
-  the function should be explained (e.g., in a comment). */
+/* your code goes here! */
 
-  
 
-/* Define a function `compoundInterest()` that takes three parameters: 
-     1. an initial bank balance (principle, in dollars)
-     2. an annual interest rate (as a decimal, e.g., 0.01) 
-     3. a number of years
-   The function should calculate the continuous compound interest
-     (https://en.wikipedia.org/wiki/Compound_interest#Continuous_compounding) 
-   and *return* the resulting total balance after that many number of years
+//Assign the brush a `fillStyle` of '#3d5afe' (the "body color" for the rocket)
 
-   You can call the method and log the result to check your work. Compare to
-     http://www.mathwarehouse.com/calculators/continuous-compound-interest-calculator.php
-*/
+
+//Draw the "body" of the rocket: a filled in rectangle with an upper-left corner
+//at (192,143), a width of 116px, and a height of 230px
 
 
 
-/* Define a function `fizzBuzz()` that takes in a single number as an argument.
-   The function should *return* an _array_ of numbers from 1 to the argument. 
-   But for multiples of three, the array should contain "Fizz" instead of the 
-   number. For multiples of five, the array should contain "Buzz" instead of the 
-   number. For numbers which are multiples of both three and five, the array 
-   should contain "FizzBuzz" instead of the number.
-   The returned array should be empty for arguments less than 1. */
-
-   
-
-/* Define a function `getLetterFrequencies()` that takes in a single string as 
-   an argument. The function should *return* an Object whose keys are characters
-   (letters) and whose values are the number of times that character appears in
-   the argument. Your function should be case sensitive.
-   _Hint:_ start with an empty Object, then loop through the letters one at a
-   time (you can access them with bracket notation, like with an array). For 
-   each letter, increase the value associated with that key by one. Watch out 
-   for if the letter is not in the Object yet!
-   You can test this method with a word like "Mississippi". */
-
-   
-
-/* Create a variable `deck` that represents a deck of modern playing cards
-   (https://en.wikipedia.org/wiki/Playing_card). This variable should be an
-   *array* of 52 elements, each of which is an Object with properties:
-     - `suit`, with a string value that is either `"hearts"`, `"diamonds"`, 
-       `"clubs"`, or `"spades"`
-     - `rank`, with an integer value ranging from 2 to 14 inclusive (values 
-        11-14 represent a Jack, Queen, King, or Ace respectively).
-    Tip: use a pair of nested loops to add each combination of suit and rank to 
-    the `deck` array! 
-    
-    You can log out the `deck` to check your work! */
-
-    
-
-//You can test the below functions by creating e.g., a `pokerHand` array that 
-//contains five cards from the `deck`.
-
-/* Define a function `containsQueenOfHearts()` that takes in an array of "card"
-   objects (e.g., a Poker hand) and returns whether or not the Queen of Hearts
-   is in that array.
-   Hint: use a loop to check each card. */
-
-   
-
-/* Define a function `getHighCard()` that takes in an array of "card" objects
-  and returns the card object with the highest value. The "high card" is the one
-  with the highest rank. Cards of different suits but the same rank are 
-  considered to have the same value, and either is a valid result */
-
-  
-
-/* Define a function `isFlush()` that takes in an array of "card" objects and
-   returns whether or not the cards all have the same _suit_. */
-
-   
-
-/* Extra challenge: define a function `hasPair()` that takes in an array of 
-   "card" objects and returns whether or not there is at least one _pair_ (two 
-   cards with the same _rank_) in the array.
-   Double challenge: return the rank of the pair of cards with the highest rank 
-   (e.g., if the hand contains more than one pair!) */
+//Draw the "engine" of the rocket: a filled-in rectangle (color of '#ffab40') 
+//with a width of 80 and a height of 35. The engine should centered with the 
+//rocket body, but be positioned 2px below the _bottom_ of the rocket body (you
+//will need to do some math to determine the x,y coordinates!)
 
 
 
-//Make functions and variables available to tester. DO NOT MODIFY THIS.
+//Draw the "nose cone" at the top of the rocket, a filled in triangle colored
+//'#64ffda'. The triangle should have corners at:
+//  (192,141), (250,45), and (308,141)
+//You will need to use `beginPath()` to start the path, `moveTo()` to move the
+//brush to a starting location, and `lineTo()` to draw a line the next corner.
+//Remember to call `fill()` in order to actually draw the path after it's made!
+
+
+
+//Draw TWO "windows" on the rocket. Windows are circles with a fill color of
+//'#ffab40'. They should have an outline (`strokeStyle`) of `'gray'` that has
+//a `lineWidth` of 2 pixels.
+//Each window has a radius of 20px; one is centered at (250, 180) and one at
+//(250,230).
+//  - You will need to begin a new path for EACH window!
+//  - Use the `arc()` method to draw a complete arc (from an angle of 0 to 2 PI)
+//  - don't forget to both `fill()` AND `stroke()` each circle to draw the fill
+//    and the outline!
+
+
+
+//Draw the "fins" on the sides of the rocket. These will be paths filled with 
+//the same color as the nose cone.
+//Instead of straight lines, the fins will be drawn with Bezier Curves
+//(https://en.wikipedia.org/wiki/B%C3%A9zier_curve; scroll down for fun animations),
+//which have a start point, end point, and two "control points".
+//To draw the curves, `moveTo()` the start point, then use `.bezierCurveTo()` to 
+//specify the control points and end point. 
+//Each fin is made of TWO curves that are part of the same path (like two lines,
+//but two curves).
+
+//The first fin is defined by one curve with
+//  - start point: (310,260)
+//  - control point 1: (360,265)
+//  - control point 2: (395,340)
+//  - end point: (335,410)
+//And a second curve with
+//  - start point: end of the first curve (same path!)
+//  - control point 1: (350,370)
+//  - control point 2: (335,355)
+//  - end point: (310,355)
+//Remember to `fill()` the path when you're done!
+
+
+
+//The second fin is defined by one curve with:
+//  - start point: (190,260)
+//  - control point 1: (140,265)
+//  - control point 2: (105,340)
+//  - end point: (165,410)
+//And a second curve with
+//  - start point: end of the first curve (same path!)
+//  - control point 1: (150,370)
+//  - control point 2: (165,355)
+//  - end point: (190,355)
+//Remember to `fill()` the path when you're done!
+
+
+
+//Finally, make the rocket body look more like a cylinder. You will do this by
+//making the `fillStyle` be a *linear gradient* 
+//(https://www.w3schools.com/graphics/canvas_gradients.asp)
+//
+//At the TOP of your code (before you draw the rocket body!), create a variable 
+//for the gradient by calling the brush's `createLinearGradient()` function.
+//  - Your gradient should go from the upper-left to the upper-right corner of
+//    the rocket body
+//Add the following "stops" to the gradient:
+//  - at 0% across, the color should be '#3d5afe' (the body color)
+//  - at 22% across, the color should be '#5a72fe' (a lighter body color)
+//  - at 40% across, the color should be `'white'`
+//  - at 58% across, the color should be the lighter body color again
+//  - at 100 across, the color should be the body color again
+//Assign the gradient as the `fillStyle` before you draw the rocket body to 
+//complete this step
+
+
+//Make canvas available to tester. DO NOT MODIFY THIS.
 if(typeof module !== 'undefined' && module.exports){
   /* eslint-disable */
-  if(typeof addFour !== 'undefined') 
-    module.exports.addFour = addFour;
-  if(typeof twelveString !== 'undefined') 
-    module.exports.twelveString = twelveString;
-  if(typeof compoundInterest !== 'undefined') 
-    module.exports.compoundInterest = compoundInterest;
-  if(typeof fizzBuzz !== 'undefined') 
-    module.exports.fizzBuzz = fizzBuzz;
-  if(typeof getLetterFrequencies !== 'undefined')
-    module.exports.getLetterFrequencies = getLetterFrequencies;
-  if(typeof deck !== 'undefined')
-    module.exports.deck = deck;
-  if(typeof containsQueenOfHearts !== 'undefined')
-    module.exports.containsQueenOfHearts = containsQueenOfHearts;
-  if(typeof getHighCard !== 'undefined')
-    module.exports.getHighCard = getHighCard;
-  if(typeof isFlush !== 'undefined')
-    module.exports.isFlush = isFlush;
+  module.exports.canvas = canvas;
 }

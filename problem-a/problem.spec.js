@@ -2,15 +2,6 @@
 const styleMatchers = require('jest-style-matchers');
 expect.extend(styleMatchers);
 
-//console spy!
-const LOG = []; //global to store the logged output
-let storeLogFunction = (...inputs) => {
-  LOG.push(inputs.reduce((out, arg) => {
-    return out+' '+(typeof arg === 'string' ? arg : JSON.stringify(arg));
-  },'').trim()); //add it to the log
-}
-console['log'] = jest.fn(storeLogFunction) //store results of console.log
-
 const jsPath = __dirname + '/js/index.js';
 
 describe('Source code is valid', () => {
@@ -19,67 +10,104 @@ describe('Source code is valid', () => {
   })
 });
 
-const solution = require(jsPath); //run the solution
+const solution = require(jsPath); //load the solution
 
-describe('Basic Types', () => {
-  test('Creates motto', () => {
-    expect(LOG[0]).toEqual('The iSchool is my school');
-  });
-  test('Logs motto length', () => {
-    expect(JSON.parse(LOG[1])).toEqual(24);
-  });
-  test('Finds "cool" presence', () => {
-    expect(JSON.parse(LOG[2])).toEqual(false);
-  });
-  test('Logs expanded motto', () => {
-    expect(LOG[3]).toEqual('The Information School is my school');
-  });
-  test('Calculates motto length ratio', () => {
-    expect(LOG[4]).toEqual('145.83%');
-  });
-})
-
-describe('Arrays', () => {
-  test('Creates numbers array', () => {
-    expect(JSON.parse(LOG[5])).toEqual([ 1, 4, 1, 5, 9, 2, 6, 5, 3, 5 ]);
-  });
-  test('Changes array element', () => {
-    expect(JSON.parse(LOG[6])).toEqual([ 1, 4.2, 1, 5, 9, 2, 6, 5, 3, 5 ]);
-  });
-  test('Adds element to array', () => {
-    expect(JSON.parse(LOG[7])).toEqual([ 1, 4.2, 1, 5, 9, 2, 6, 5, 3, 5, 3 ]);
-  });
-  test('Finds median number', () => {
-    expect(JSON.parse(LOG[8])).toEqual(4.2);
-  });
-})
-
-describe('Objects', () => {
-  test('Creates rectangle object', () => {
-    expect(JSON.parse(LOG[9])).toEqual({ x: 30, y: 50, width: 100, height: 50 });
-  });
-  test('Logs rect\'s x,y coordinates', () => {
-    expect(LOG[10]).toEqual('30, 50');
-  });
-  test('Finds rect\'s area', () => {
-    expect(JSON.parse(LOG[11])).toEqual(1000);
-  });
-  test('Creates circle object', () => {
-    expect(JSON.parse(LOG[12])).toEqual({ cx: 34, cy: 43, radius: 9 });
-  });
-  test('Creates shape array', () => {
-    expect(JSON.parse(LOG[13])).toEqual([ { x: 30, y: 50, width: 100, height: 10 },
-      { cx: 34, cy: 43, radius: 9 } ]);
-  });
-  test('Adds triangle to shape array', () => {
-    expect(JSON.parse(LOG[14])).toEqual([ { x: 30, y: 50, width: 100, height: 10 },
-      { cx: 34, cy: 43, radius: 9 }, {base: 33, height: 44} ]);   
+describe('addFour() function', () => {
+  test('produces expected output', () => {
+    expect(solution.addFour(8997)).toBeGreaterThan(9000);
   })
-  test('Logs triangle\'s initial hypotenuse', () => {
-    expect(LOG[15]).toEqual("undefined");
+
+  test('has been called', () => {
+    expect(solution.twelveString).toEqual('84');
+  })
+})
+
+describe('compoundInterest() function', () => {
+  test('produces expected output', () => {
+    expect(solution.compoundInterest(1000,.06,5)).toBeCloseTo(1349.86);
+    expect(solution.compoundInterest(1000,.01,10)).toBeCloseTo(1105.17);
+  })  
+})
+
+describe('fizzBuzz() function', () => {
+  test('produces expected output', () => {
+    expect(solution.fizzBuzz(20).slice(7,15)).toEqual([8,'Fizz','Buzz',11,'Fizz',13,14,'FizzBuzz']);
+    expect(solution.fizzBuzz(355).slice(343, 350)).toEqual([344,'FizzBuzz',346,347,'Fizz',349,'Buzz']);    
+  })
+})
+
+describe('getLetterFrequencies() function', () => {
+  test('produces expected output', () => {
+    expect(solution.getLetterFrequencies("mississippi")).toEqual({m:1,i:4,s:4,p:2});
+    expect(solution.getLetterFrequencies("she sells sea shells down by the sea shore")).toEqual({h:4,e:7,' ':8,l:4,a:2,d:1,o:2,w:1,n:1,b:1,y:1,t:1,r:1,s:8});
+  })
+})
+
+describe('Deck variable of "cards"', () => {
+  test('contains a full deck', () => {
+    expect(solution.deck.length).toBe(52);
+  })
+  test('contains expected cards', () => {
+    expect(solution.deck).toContainEqual({rank:14, suit:'spades'}); //AS    
+    expect(solution.deck).toContainEqual({rank:12, suit:'hearts'}); //QH
+    expect(solution.deck).toContainEqual({rank:2, suit:'clubs'}); //2C
+    expect(solution.deck).toContainEqual({rank:9, suit:'diamonds'}); //9D
+    expect(solution.deck).not.toContainEqual({rank:1, suit:'spades'}); //! 1S
+    expect(solution.deck).not.toContainEqual({rank:15, suit:'hearts'}); //! 15H    
   });
-  test('Logs the final shapes array', () => {
-    expect(JSON.parse(LOG[16])).toEqual([ { x: 30, y: 50, width: 100, height: 10 },
-      { cx: 34, cy: 43, radius: 9 }, {base: 33, height: 44, hypotenuse: 55 } ]);
+})
+
+describe('Searching functions', () => {
+  describe('containsQueenOfHearts() function', () => {
+    test('produces expected output', () => {
+      let hand = [
+        {rank:12, suit:'diamonds'},
+        {rank:3, suit:'hearts'},
+        {rank:12, suit:'hearts'},
+        {rank:14, suit:'spades'},
+      ];
+      expect(solution.containsQueenOfHearts(hand)).toBe(true);
+
+      hand = [
+        {rank:3, suit:'diamonds'},
+        {rank:4, suit:'diamonds'},
+        {rank:3, suit:'spades'},
+      ];
+      expect(solution.containsQueenOfHearts(hand)).toBe(false);        
+    })
+  });
+  describe('getHighCard() function', () => {
+    test('produces expected output', () => {
+      let hand = [
+        {rank:3, suit:'diamonds'},
+        {rank:4, suit:'diamonds'},
+        {rank:3, suit:'spades'},
+        {rank:14, suit:'spades'},
+        {rank:9, suit:'diamonds'}
+      ];
+      expect(solution.getHighCard(hand)).toEqual({rank:14, suit:'spades'});        
+    })
+  });
+  describe('isFlush() function', () => {
+    test('produces expected output', () => {
+      let hand = [
+        {rank:2, suit:'spades'},{rank:3, suit:'spades'},{rank:4, suit:'spades'},
+      ];
+      expect(solution.isFlush(hand)).toEqual(true);        
+      hand = [
+        {rank:2, suit:'clubs'},
+        {rank:3, suit:'spades'},
+        {rank:4, suit:'spades'},
+        {rank:5, suit:'spades'},
+      ];
+      expect(solution.isFlush(hand)).toEqual(false);
+      hand = [
+        {rank:3, suit:'spades'},
+        {rank:4, suit:'spades'},
+        {rank:2, suit:'clubs'},
+        {rank:5, suit:'spades'},
+      ];
+      expect(solution.isFlush(hand)).toEqual(false);
+    })
   });
 })

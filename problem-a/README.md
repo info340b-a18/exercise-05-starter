@@ -1,6 +1,6 @@
 # Problem A
 
-In this exercise, you'll practice with fundamental JavaScript variables and syntax.
+In this exercise, you'll practice with with JavaScript functions, control structures, objects, and basic searching (a la [here](https://infx511.github.io/searching.html)). This problem will also exercise your algorithm design skills!
 
 To complete the exercise, edit the included **`js/index.js`** file to add in the code described in the comments.
 
@@ -11,6 +11,6 @@ You can see the results of your work either by opening up the included `index.ht
 node js/index.js
 ```
 
-**A note on testing**: The test suite for this problem checks that you have logged the expected output in the expected order. Additional `console.log()` statements (e.g., that you include for debugging) will cause the automated tests to fail and should be removed.
+**A note on testing**: The test suite will execute your `js/index.js` file; any log statements in that script will be shown at the end of the tests.
 
 Also keep in mind that the automated tests are simply to help you verify your results; they will not ensure that your code follows the required syntactical approach.

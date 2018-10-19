@@ -1,6 +1,9 @@
 # ignore node dependency files
 node_modules
 
+# ignore VS code helper files
+.vscode
+
 # ignore OS generated files
 .DS_Store
 Thumbs.db

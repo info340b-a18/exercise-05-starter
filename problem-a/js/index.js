@@ -1,102 +1,118 @@
 'use strict';
 
-/** Basic Types */
+/* Define a function `addFour()` that takes a single argument 
+   and returns a value 4 greater than the input.*/
 
-//Define a new variable `motto` for the value "The iSchool is my school"
+   
+/* Create and log a variable `twelve` that is the result of passing 8 to your
+   addFour() function. */
 
+   
+/* Create and log a variable `twelveString` that is the result of passing "8" 
+   (a string) to your addFour() function. Consider what this tells you about how
+  the function should be explained (e.g., in a comment). */
 
-//Log out the motto
+  
 
+/* Define a function `compoundInterest()` that takes three parameters: 
+     1. an initial bank balance (principle, in dollars)
+     2. an annual interest rate (as a decimal, e.g., 0.01) 
+     3. a number of years
+   The function should calculate the continuous compound interest
+     (https://en.wikipedia.org/wiki/Compound_interest#Continuous_compounding) 
+   and *return* the resulting total balance after that many number of years
 
-//Define a variable `mottoLength` that stores the length of the motto.
-//Use the `.length` property
-//Log out the length.
-
-
-//Use the `indexOf()` String method to see if the word "cool" is in the string.
-//See http://www.w3schools.com/jsref/jsref_obj_string.asp for String methods
-//Log out a _boolean_ whether it is or not.
-
-
-//Re-assign the `motto` variable with a value that has the word "iSchool" in the 
-//motto with the words "Information School".
-//Log out the updated motto.
-
-
-//Calculate the ratio between the length of the updated motto and the length of 
-//the old (which you had saved in a variable!). Log out this ratio as a 
-//percentage with two decimal places of precision (e.g., `"123.45%"`).
-//You can use the `.toFixed()` Number method to specify the precision. 
+   You can call the method and log the result to check your work. Compare to
+     http://www.mathwarehouse.com/calculators/continuous-compound-interest-calculator.php
+*/
 
 
 
-/** Arrays **/
+/* Define a function `fizzBuzz()` that takes in a single number as an argument.
+   The function should *return* an _array_ of numbers from 1 to the argument. 
+   But for multiples of three, the array should contain "Fizz" instead of the 
+   number. For multiples of five, the array should contain "Buzz" instead of the 
+   number. For numbers which are multiples of both three and five, the array 
+   should contain "FizzBuzz" instead of the number.
+   The returned array should be empty for arguments less than 1. */
 
-//Create an array `numbers` that contains these 10 numbers:
-//    1 4 1 5 9 2 6 5 3 5
-//Log out the array.
+   
+
+/* Define a function `getLetterFrequencies()` that takes in a single string as 
+   an argument. The function should *return* an Object whose keys are characters
+   (letters) and whose values are the number of times that character appears in
+   the argument. Your function should be case sensitive.
+   _Hint:_ start with an empty Object, then loop through the letters one at a
+   time (you can access them with bracket notation, like with an array). For 
+   each letter, increase the value associated with that key by one. Watch out 
+   for if the letter is not in the Object yet!
+   You can test this method with a word like "Mississippi". */
+
+   
+
+/* Create a variable `deck` that represents a deck of modern playing cards
+   (https://en.wikipedia.org/wiki/Playing_card). This variable should be an
+   *array* of 52 elements, each of which is an Object with properties:
+     - `suit`, with a string value that is either `"hearts"`, `"diamonds"`, 
+       `"clubs"`, or `"spades"`
+     - `rank`, with an integer value ranging from 2 to 14 inclusive (values 
+        11-14 represent a Jack, Queen, King, or Ace respectively).
+    Tip: use a pair of nested loops to add each combination of suit and rank to 
+    the `deck` array! 
+    
+    You can log out the `deck` to check your work! */
+
+    
+
+//You can test the below functions by creating e.g., a `pokerHand` array that 
+//contains five cards from the `deck`.
+
+/* Define a function `containsQueenOfHearts()` that takes in an array of "card"
+   objects (e.g., a Poker hand) and returns whether or not the Queen of Hearts
+   is in that array.
+   Hint: use a loop to check each card. */
+
+   
+
+/* Define a function `getHighCard()` that takes in an array of "card" objects
+  and returns the card object with the highest value. The "high card" is the one
+  with the highest rank. Cards of different suits but the same rank are 
+  considered to have the same value, and either is a valid result */
+
+  
+
+/* Define a function `isFlush()` that takes in an array of "card" objects and
+   returns whether or not the cards all have the same _suit_. */
+
+   
+
+/* Extra challenge: define a function `hasPair()` that takes in an array of 
+   "card" objects and returns whether or not there is at least one _pair_ (two 
+   cards with the same _rank_) in the array.
+   Double challenge: return the rank of the pair of cards with the highest rank 
+   (e.g., if the hand contains more than one pair!) */
 
 
-//Use bracket notation to change the `4` in the array to a `4.2`.
-//Log out the updated array.
 
-
-//Add the number 3 to the END of the array.
-//Log out the updated array.
-
-
-//Find the median (middle) value of the numbers in the array.
-//Hint: sort() the array, then access the middle index of the sorted values.
-//You can use the `Math.floor()` function to round to a whole number.
-//Log out the median value.
-
-
-
-/** Objects **/
-
-//Create a variable `rect` that represents a rectangle. This should be an Object
-//with properties:
-//  `x` (coordinate) of 30, `y` of 50, `width` of 100, `height` of 50
-//Log out the rectangle object
-
-
-//Log out the x- and y- coordinates of the rectangle (its location). Your output 
-//should have the format `"X, Y"`.
-
-
-//Set the rectangle's height to be the square root of its width. (Use the 
-//`Math.sqrt()` function).
-//Use *dot notation* to access the properties!
-
-
-//Log out the rectangle's area. Use *dot notation* to access the properties!
-
-
-//Create a variable `circle` that represents a circle. This should be an object
-//with properties:
-//  `cx` (center-x-coordinate) of 34, 
-//  `cy` of 43,
-//  `radius` equal to the LAST value in the (sorted) `numbers` array.
-//Log out the circle
-
-
-//Create an array `shapes` that represents a list of shapes. The array should
-//contain the rectangle and the circle objects defined above.
-//Log out the variable. Be sure to inspect it in the developer console!
-
-
-//Add a new ANONYMOUS object (e.g., one passed in directly without its own
-//variable name) representing a right triangle to the `shapes` array.
-//The triangle should have a `base` of 33 and a `height` of 44.
-//Log out the updated shapes array.
-
-
-//Log out the triangle's `hypotenuse` property (don't calculate it, just log out
-//the current property value!). What do you get?
-
-
-//Assign the triangle inside the `shapes` array a 'hypotenuse' property of `55`.
-//Log out the `shapes` array again.
-//Visually check: what happens if you inspect the previously logged array in the 
-//Chrome developer console?
-
+//Make functions and variables available to tester. DO NOT MODIFY THIS.
+if(typeof module !== 'undefined' && module.exports){
+  /* eslint-disable */
+  if(typeof addFour !== 'undefined') 
+    module.exports.addFour = addFour;
+  if(typeof twelveString !== 'undefined') 
+    module.exports.twelveString = twelveString;
+  if(typeof compoundInterest !== 'undefined') 
+    module.exports.compoundInterest = compoundInterest;
+  if(typeof fizzBuzz !== 'undefined') 
+    module.exports.fizzBuzz = fizzBuzz;
+  if(typeof getLetterFrequencies !== 'undefined')
+    module.exports.getLetterFrequencies = getLetterFrequencies;
+  if(typeof deck !== 'undefined')
+    module.exports.deck = deck;
+  if(typeof containsQueenOfHearts !== 'undefined')
+    module.exports.containsQueenOfHearts = containsQueenOfHearts;
+  if(typeof getHighCard !== 'undefined')
+    module.exports.getHighCard = getHighCard;
+  if(typeof isFlush !== 'undefined')
+    module.exports.isFlush = isFlush;
+}

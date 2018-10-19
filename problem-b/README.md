@@ -1,16 +1,18 @@
 # Problem B
 
-In this exercise, you'll practice with with JavaScript functions, control structures, objects, and basic searching (a la [here](https://infx511.github.io/searching.html)). This problem will also exercise your algorithm design skills!
+In this exercise, you will learn to utilize the [**HTML5 Canvas**](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) API in order programmatically create images. Visit the link or the below resources for tutorials and explanations of the API.
 
-To complete the exercise, edit the included **`js/index.js`** file to add in the code described in the comments.
+You will write JavaScript code to produce a picture of a old-school rocket ship:
 
-You can see the results of your work either by opening up the included `index.html` file in a browser and viewing the output in the [Developer Console](https://developers.google.com/web/tools/chrome-devtools/console/), or by running the script directly using Node.js:
+![An example spaceship drawing](img/example.png)
 
-```bash
-# from the directory for THIS PROBLEM
-node js/index.js
-```
+To complete the exercise, edit the included **`js/index.js`** file to add in the code described in the comments. Note that you will _not_ need to edit the HTML file!
 
-**A note on testing**: The test suite will execute your `js/index.js` file; any log statements in that script will be shown at the end of the tests.
+You can see the results of your work by opening up the included `index.html` file in a browser. Remember to refresh the page after you update your code, and to check for any errors in the Developer console.
 
-Also keep in mind that the automated tests are simply to help you verify your results; they will not ensure that your code follows the required syntactical approach.
+**A note on testing**: The test suite included for this exercise uses pixel-based image comparison of your drawn rocket; read the test results carefully for details on any failures. You will need to complete the exercise for the test to pass.
+
+## Resources
+- [Canvas Tutorial (mdn)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)
+- [Canvas API Reference (w3c)](https://www.w3schools.com/TAgs/ref_canvas.asp)
+- [HTML5 Canvas summary (w3c)](https://www.w3schools.com/html/html5_canvas.asp) (links to another tutorial)
